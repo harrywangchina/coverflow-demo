@@ -1,0 +1,369 @@
+<html>
+    <head>
+            <link rel="stylesheet" href="swiper.min.css">
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            html, body {
+                width: 100%;
+                height: 100%;
+                font-size: 10px;
+            }
+            .scanner {
+                background-image: url("./assets/icon_search.png");
+            }
+            .search-container {
+                display: flex;
+                align-items: center;
+                height: 2.5rem;
+                border: 1px solid #B0B1B9;
+                border-radius: 2rem;
+                padding: 0 1rem;
+            }
+            .search-container input {
+                border: none;
+                outline: none;
+            }
+            .section {
+                padding: 0 1rem;
+            }
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 2rem 0;
+            }
+            .section-title {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+            .section-flag {
+                margin-right: .6rem;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: #F64B39;
+            }
+            .section-more-btn {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-right: 1.5rem;
+                cursor: pointer;
+                color: rgba(57, 60, 78, 0.8);
+                font-size: 1.4rem;
+            }
+            .more-arrow {
+                width: 8px;
+                height: 11px;
+                margin-left: .7rem;
+                background-image: url("./assets/icon_arrow_more.png");
+                background-size: contain;
+            }
+            .top-card-item {
+                display: inline-block;
+                position: relative;
+                height: 7rem;
+                width: 30%;
+                margin-right: 1%;
+                background-image: linear-gradient(to right, #9A3DFF, #B23CFF);
+                border-radius: 10px;
+                box-shadow: 2px 5px 5px lightgray;
+            }
+            .top-card-item-text {
+                position: absolute;
+                bottom: 1rem;
+                left: .5rem;
+                color: white;
+            }
+            .card-container {
+                height: 16rem;
+                overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap;
+                margin-top: 2rem;
+            }
+            .card-item {
+                display: inline-block;
+                height: 14.5rem;
+                width: 13.8rem;
+                padding: .5rem;
+                margin-right: 1rem;
+                background: #fff;
+                border-radius: 2px;
+                border: 1px solid #EBEBEB;
+                text-align: center;
+            }
+            .card-item-desc {
+                height: 2.7rem;
+                line-height: 2.7rem;
+                margin: .5rem 0 1.5rem 0;
+                text-align: center;
+                color: #fff;
+                border-top-left-radius: inherit;
+                border-top-right-radius: inherit;
+                background-image: linear-gradient(to right, rgb(245, 188, 65), rgb(242, 162, 58));
+                font-size: 1.3rem;
+            }
+            .card-item-title {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+            .card-item-display {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: baseline;
+                margin-top: 1rem;
+                color: rgb(227, 88, 68);
+            }
+            .card-item-number {
+                font-size: 2.3rem;
+                font-weight: 700;
+                
+            }
+            .card-item-unit {
+                font-size: 1.2rem;
+            }
+            .card-item-bottom {
+                margin-top: 1rem;
+                font-size: 1.2rem;
+            }
+            .list-item {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: baseline;
+                margin: 3rem 0;
+                padding-bottom: 3rem;
+            }
+            .list-item:nth-child(odd) {
+                border-bottom: 1px solid rgba(57, 60, 78, 0.13);
+            }
+            .list-item-right {
+                width: 50%;
+            }
+            .list-item-left-top {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: baseline;
+                color: rgb(240, 149, 54);
+            }
+            .list-item-left-top-number {
+                font-size: 2.3rem;
+                font-weight: 700;
+            }
+            .list-item-left-top-unit {
+                font-size: 1.2rem;
+            }
+            .list-item-left-bottom-text {
+                margin-top: 1.4rem;
+                color: rgba(57, 60, 78, 0.7);
+                font-size: 1.3rem;
+            }
+            .list-item-right-top-text {
+                font-size: 1.6rem;
+                font-weight: 700;
+            }
+            .list-item-right-bottom-display {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-top: 1.4rem;
+            }
+            .list-item-right-bottom-gray {
+                color: rgba(57, 60, 78, 0.7);
+                font-size: 1.3rem;
+            }
+            .list-item-right-bottom-duration-value {
+                color: rgb(57, 60, 78);
+                font-size: 1.4rem;
+            }
+            .list-item-right-bottom-duration-unit {
+                color: rgb(57, 60, 78);
+                font-size: 1.3rem;
+            }
+            .list-item-right-bottom-price {
+                color: rgb(240, 149, 54);
+                font-size: 1.4rem;
+            }
+            .preorder-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 31.3rem;
+                height: 17rem;
+                padding: 1rem;
+                margin-bottom: 3rem;
+                border: 1px solid lightgray;
+                border-radius: 4px;
+                background-image: url("./assets/bg_preorder.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .preorder-item-title {
+                margin: 1.5rem 0 0 0;
+                font-size: 1.6rem;
+                font-weight: 600;
+            }
+            .preorder-item-number {
+                margin: 2rem 0 0 0;
+                color: rgb(240, 149, 54);
+            }
+            .preorder-item-desc {
+                margin: 1rem 0 0 0;
+                color: gray;
+            }
+            .preorder-item-btn {
+                padding: .6rem 7rem;
+                margin: 1rem 0 0 0;
+                border: none;
+                border-radius: .5rem;
+                color: #fff;
+                font-size: 1.5rem;
+                font-weight: 500;
+                background-image: linear-gradient(to right, #499BFF, #0C5FF8);
+            }
+            .preorder-item-bottom {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                justify-content: space-around;
+                margin-top: 2rem;
+            }
+            .preorder-item-bottom-section {
+                display: flex;
+                align-items: center;
+            }
+            .preorder-item-bottom-icon {
+                width: 15px;
+                height: 15px;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .preorder-item-bottom-text {
+                margin-left: .5rem;
+                color: rgb(57, 60, 78);
+                font-size: 1.2rem;
+            }
+            .icon-money {
+                background-image: url("./assets/icon_money.png");
+            }
+            .icon-date {
+                background-image: url("./assets/icon_date.png");
+            }
+            .swiper {
+                margin: 1rem 0;
+            }
+            .swiper-container {
+                width: 100%;
+                height: 18rem;
+                margin: 1rem;
+            }
+            .up-coming-item {
+                /* width: 15rem;
+                height: 15rem;
+                background-color: #0C5FF8; */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                    <div class="swiper-slide preorder-item">
+                        <div class="preorder-item-title">乾元私享2018第1期</div>
+                        <div class="preorder-item-number">
+                            <span class="list-item-left-top-number">3.35</span>
+                            <span class="list-item-left-top-unit">%</span>
+                        </div>
+                        <div class="list-item-left-bottom-text">业绩比较基准</div>
+                        <div class="preorder-item-bottom">
+                            <div class="preorder-item-bottom-section">
+                                <div class="preorder-item-bottom-icon icon-money"></div>
+                                <span class="preorder-item-bottom-text">2019年4月10日</span>
+                            </div>
+                            <div class="preorder-item-bottom-section">
+                                <div class="preorder-item-bottom-icon icon-date"></div>
+                                <span class="preorder-item-bottom-text">10000元起投</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide preorder-item">
+                        <div class="preorder-item-title">乾元私享2018第1期</div>
+                        <div class="preorder-item-number">
+                            <span class="list-item-left-top-number">3.35</span>
+                            <span class="list-item-left-top-unit">%</span>
+                        </div>
+                        <div class="list-item-left-bottom-text">业绩比较基准</div>
+                        <div class="preorder-item-bottom">
+                            <div class="preorder-item-bottom-section">
+                                <div class="preorder-item-bottom-icon icon-money"></div>
+                                <span class="preorder-item-bottom-text">2019年4月10日</span>
+                            </div>
+                            <div class="preorder-item-bottom-section">
+                                <div class="preorder-item-bottom-icon icon-date"></div>
+                                <span class="preorder-item-bottom-text">10000元起投</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide preorder-item">
+                        <div class="preorder-item-title">乾元私享2018第1期</div>
+                        <div class="preorder-item-number">
+                            <span class="list-item-left-top-number">3.35</span>
+                            <span class="list-item-left-top-unit">%</span>
+                        </div>
+                        <div class="list-item-left-bottom-text">业绩比较基准</div>
+                        <div class="preorder-item-bottom">
+                            <div class="preorder-item-bottom-section">
+                                <div class="preorder-item-bottom-icon icon-money"></div>
+                                <span class="preorder-item-bottom-text">2019年4月10日</span>
+                            </div>
+                            <div class="preorder-item-bottom-section">
+                                <div class="preorder-item-bottom-icon icon-date"></div>
+                                <span class="preorder-item-bottom-text">10000元起投</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide preorder-item">
+                        <div class="preorder-item-title">乾元私享2018第1期</div>
+                        <div class="preorder-item-number">
+                            <span class="list-item-left-top-number">3.35</span>
+                            <span class="list-item-left-top-unit">%</span>
+                        </div>
+                        <div class="list-item-left-bottom-text">业绩比较基准</div>
+                        <div class="preorder-item-bottom">
+                            <div class="preorder-item-bottom-section">
+                                <div class="preorder-item-bottom-icon icon-money"></div>
+                                <span class="preorder-item-bottom-text">2019年4月10日</span>
+                            </div>
+                            <div class="preorder-item-bottom-section">
+                                <div class="preorder-item-bottom-icon icon-date"></div>
+                                <span class="preorder-item-bottom-text">10000元起投</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="swiper.min.js"></script>
+        <script>
+            var mySwiper = new Swiper ('.swiper-container', {
+                // Optional parameters
+                effect : 'coverflow',
+                centeredSlides: true,
+                spaceBetween: 20,
+                slidesPerView: 'auto',
+                loop: false,
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 50,
+                    modifier: 1,
+                    slideShadows: false,
+                },
+            });
+        </script>
+    </body>
+</html>
